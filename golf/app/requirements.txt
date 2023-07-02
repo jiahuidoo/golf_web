@@ -1,0 +1,15 @@
+click
+Flask==2.2.2
+Flask-Login
+wheel
+flask-mongoengine
+Flask-WTF
+itsdangerous
+Jinja2
+MarkupSafe
+mongoengine
+pymongo
+six
+Werkzeug
+WTForms==2.3.3
+email_validator

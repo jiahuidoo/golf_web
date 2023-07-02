@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block mainblock %}
+<div class="card-header">
+    <h2>Upload recordings</h2>
+</div>
+<div class="card-body">
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input name="type" type="hidden" value="upload">
+        <div>
+            <div>
+                <label for='golfer'>Upload file for Golfer</label>
+                <select name="golfer" id="selected_golfer">
+                    <option value="all">Select One</option>
+                    {% for user in user_list %}
+                    <option value="{{user.name}}">{{user.name}}</option>
+                    {% endfor %}
+                </select>
+                <label for="datatype">with data type of:</label>
+                <select id="datatype" name="datatype">
+                    <option value="Golf Set">Golf Set</option>
+                    <option value="Swings">Swings</option>
+                </select>
+            </div>
+            <div id="golfline">Golf set line:</div>
+            <p>label,clubtype,loft,weight,size/material/style,length,weight,material,flex,diameter,weight,material</p>
+            <div id="swingline">Swing line:</div>
+            <p>datetime,email,speed,label</p>
+            <div>
+                <label for='upload'>Upload CSV or txt</label>
+                <input class="upload" id='upload' name='file' type='file' required>
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="Upload" type="Upload" />
+        </div>
+        {% if error %}
+        <br><div style="color:red;">{{ error }}</div>
+        {% endif %}
+        <div></div>
+    </form>
+</div>
+{% endblock %}

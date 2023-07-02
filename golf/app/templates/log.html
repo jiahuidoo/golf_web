@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block userDropdown %}
+{% if panel == "SWING" %}
+<select name="selected_paramater" id="selected_paramater">
+  <option value="">Select One User (by email)</option>
+  {% for user in user_list %}
+  <option value="{{user.email}}">{{user.email}}</option>
+  {% endfor %}
+</select>
+<select name="selected_paramater2" id="selected_paramater2">
+  <option value="">Select One Club (by label)</option>
+</select>
+{% endif %}
+<script src="{{ url_for('static', filename='js/log.js') }}"></script>
+{% endblock %}
+
+{% block mainblock %}
+<div class="card-header">
+  <h3>Golf Distance Calculator</h3>
+</div>
+<div class="card-body">
+  <div class="container-fluid col-sm-12">
+    <form action="/process" method="post">
+      <!-- <input name="user_email" type="hidden" id="user_email" value=""> -->
+      <div class="form-group row">
+        <label for="email" class="col-sm-3 col-form-label">Email</label>
+        <div class="col-sm-5">
+          <input class="form-control" id="user_email" placeholder="email" name="user_email" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="club" class="col-sm-3 col-form-label">Club</label>
+        <div class="col-sm-5">
+          <input class="form-control" id="club" placeholder="club" name="club" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="speed" class="col-sm-3 col-form-label">Swing Speed</label>
+        <div class="col-sm-5">
+          <input class="form-control" id="speed" placeholder="speed (in mph)" name="speed" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="date" class="col-sm-3 col-form-label">Date & Time</label>
+        <div class="col-sm-5">
+          <input type="datetime-local" class="form-control" id="datetime" name="date" required>
+        </div>
+      </div>
+      <div class="form-group row form-check">
+        <button type="submit" class="offset-sm-3 btn btn-primary">Swing</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}
